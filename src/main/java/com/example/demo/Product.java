@@ -5,7 +5,7 @@ import javax.validation.constraints.NotEmpty;
 import java.util.Set;
 
 @Entity
-@Table(name = "product_DB")
+//@Table(name = "product_DB")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,15 +23,9 @@ public class Product {
     @NotEmpty
     private boolean available;
 
-//    @OneToMany(mappedBy = "product_id", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-//    private Set<Order> orders;
-//
-//    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-//    private Order order;
-
-    @ManyToMany(mappedBy = "product_id")
-    private Set<Order> orders;
-
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "order_id")
+    private Order order;
 
     public Product() {
     }
@@ -60,15 +54,6 @@ public class Product {
         this.product_name = product_name;
     }
 
-    public Set<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
-    }
-
-
     public double getPrice() {
         return price;
     }
@@ -85,4 +70,11 @@ public class Product {
         this.available = available;
     }
 
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 }

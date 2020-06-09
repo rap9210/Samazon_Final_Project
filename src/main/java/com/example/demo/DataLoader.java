@@ -21,8 +21,6 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... String) throws Exception {
 
-        Set<Customer> customers = new HashSet<>();
-
 
         Customer customer1 = new Customer();
         customer1.setRoles("Admin");

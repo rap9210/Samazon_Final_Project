@@ -2,10 +2,11 @@ package com.example.demo;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
-@Table(name = "customer_DB")
+//@Table(name = "customer_db")
 public class Customer {
 
     @Id
@@ -28,22 +29,24 @@ public class Customer {
     private long phone;
 
     @NotEmpty
+    private String name;
+
+    @NotEmpty
+    private long card_number;
+
+    @NotEmpty
+    private LocalDate expiration_date;
+
+    @NotEmpty
     private String user_name;
 
     @NotEmpty
     private String password;
 
-
     private String roles = "User";
 
-//    @OneToMany(mappedBy = "customer_id", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-//    private Set<Order> orders;
-//
-//    @ManyToOne(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-//    private Order order;
-    @ManyToMany(mappedBy = "customer_id")
+    @OneToMany(mappedBy = "customer_id", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private Set<Order> orders;
-
 
     public Customer() {
     }
@@ -112,6 +115,30 @@ public class Customer {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public long getCard_number() {
+        return card_number;
+    }
+
+    public void setCard_number(long card_number) {
+        this.card_number = card_number;
+    }
+
+    public LocalDate getExpiration_date() {
+        return expiration_date;
+    }
+
+    public void setExpiration_date(LocalDate expiration_date) {
+        this.expiration_date = expiration_date;
     }
 
     public long getPhone() {
