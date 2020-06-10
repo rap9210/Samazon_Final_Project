@@ -63,5 +63,33 @@ public class DataLoader implements CommandLineRunner {
         product2.setAvailable(true);
         productRepository.save(product2);
 
+        Product product3 = new Product();
+        product3.setProductType("Jewelery");
+        product3.setProductName("Silver Watch");
+        product3.setPrice(1399.99);
+        product3.setAvailable(true);
+        productRepository.save(product3);
+
+        Product product4 = new Product();
+        product4.setProductType("Jewelery");
+        product4.setProductName("Bronze Watch");
+        product4.setPrice(1399.99);
+        product4.setAvailable(true);
+        productRepository.save(product4);
+
+        Product product5 = new Product();
+        product5.setProductType("Jewelery");
+        product5.setProductName("Digital Watch");
+        product5.setPrice(1399.99);
+        product5.setAvailable(true);
+        productRepository.save(product5);
+
+        Product product6 = new Product();
+        product6.setProductType("Jewelery");
+        product6.setProductName("Diamond Watch");
+        product6.setPrice(1399.99);
+        product6.setAvailable(true);
+        productRepository.save(product6);
+
     }
 }

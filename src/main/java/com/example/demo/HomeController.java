@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,11 +23,21 @@ public class HomeController {
     @Autowired
     UserService userService;
 
-    Set<Product> produ = new HashSet<>();
+    Set<Product> cart = new HashSet<>();
 
     @RequestMapping("/")
-    public String listProduct(Model model){
+    public String listProduct(Model model, Principal principal){
         model.addAttribute("products", productRepository.findAll());
+        model.addAttribute("cart", cart.size());
+
+        if(principal != null) {
+            String username = principal.getName();
+            model.addAttribute("user", customerRepository.findByUserName(username).getUserName());
+        }
+        else{
+            model.addAttribute("user", "Guest");
+        }
+
         return "listProducts";
     }
 
@@ -54,16 +65,15 @@ public class HomeController {
 
     @GetMapping("/selectProduct/{id}")
     public String addProduct(@PathVariable("id") long id){
-        Product selectedProduct = productRepository.findById(id).get();
-        produ.add(selectedProduct);
+        cart.add(productRepository.findById(id).get());
         return "redirect:/";
     }
 
     @RequestMapping("/checkout")
     public String orderPage(Model model){
         Order newOrder = new Order();
-        newOrder.setProducts(produ);
-        newOrder.setSubtotal(produ);
+        newOrder.setProducts(cart);
+        newOrder.setSubtotal(cart);
         newOrder.setCustomer(userService.getUser());
         orderRepository.save(newOrder);
         model.addAttribute("order", orderRepository);
