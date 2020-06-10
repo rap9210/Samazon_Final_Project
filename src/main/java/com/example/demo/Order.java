@@ -6,21 +6,20 @@ import java.util.Set;
 
 
 @Entity
-//@Table(name = "order_DB")
+@Table(name = "order_db")
 public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotEmpty
     private double subtotal;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "order_id", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Product> products;
 
     public Order() {
@@ -28,10 +27,6 @@ public class Order {
 
     public Set<Product> getProducts() {
         return products;
-    }
-
-    public void setProducts(Product products) {
-        this.products.add(products);
     }
 
     public long getId() {
@@ -42,8 +37,12 @@ public class Order {
         return subtotal;
     }
 
-    public void setSubtotal(double subtotal) {
-        this.subtotal = subtotal;
+    public void setSubtotal(Set<Product> products) {
+        double order_total = 0;
+        for(Product p : products){
+            order_total =+ p.getPrice();
+        }
+        this.subtotal = order_total;
     }
 
     public void setId(long id) {
@@ -62,12 +61,4 @@ public class Order {
         this.customer = customer;
     }
 
-    public double totalPrice(Set<Product> products){
-        double order_total = 0;
-        for(Product p : products){
-            order_total += p.getPrice();
-        }
-        this.subtotal = order_total;
-        return subtotal;
-    }
 }

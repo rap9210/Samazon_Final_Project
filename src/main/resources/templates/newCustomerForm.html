@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>new customer form</title>
+</head>
+<body>
+    <h1> Add new message</h1>
+    <div class="card">
+        <div class="card-body">
+            <form autocomplete="off" th:action="@{/addCustomer}" th:object="${newCustomer}" method="post">
+
+                <input type="hidden" th:field="*{id}">
+                <input type="hidden" th:field="*{roles}">
+
+                First Name:
+                <mark><strong>
+                    <span th:if="${#fields.hasErrors('firstName')}"
+                                      th:errors="*{firstName}">First Name error</span>
+                </strong></mark>
+                <input type="text" id="firstName" placeholder="firstName"
+                       th:field="*{firstName}"/><br/>
+
+                Last Name:
+                <mark><strong>
+                    <span th:if="${#fields.hasErrors('lastName')}"
+                                      th:errors="*{lastName}">Last Name error</span>
+                </strong></mark>
+                <input type="text" id="lastName" placeholder="lastName"
+                          th:field="*{lastName}"><br/>
+
+                Address:
+                <mark><strong>
+                    <span th:if="${#fields.hasErrors('address')}"
+                                      th:errors="*{address}">Address error</span>
+                </strong></mark>
+                <input type="text" id="address" placeholder="address"
+                       th:field="*{address}"><br/>
+
+                Email:
+                <mark><strong>
+                    <span th:if="${#fields.hasErrors('email')}"
+                                      th:errors="*{email}">Email error</span>
+                </strong></mark>
+                <input type="email" id="email" placeholder="email"
+                       th:field="*{email}"><br/>
+
+
+                phone:
+                <mark><strong>
+                    <span th:if="${#fields.hasErrors('phone')}"
+                                      th:errors="*{phone}">phone error</span>
+                </strong></mark>
+                <input type="number" id="phone" placeholder="phone"
+                       th:field="*{phone}"><br/>
+
+
+                Name On Card:
+                <mark><strong>
+                    <span th:if="${#fields.hasErrors('nameOnCard')}"
+                                      th:errors="*{nameOnCard}">Name On Card error</span>
+                </strong></mark>
+                <input type="text" id="nameOnCard" placeholder="nameOnCard"
+                       th:field="*{nameOnCard}"><br/>
+
+                Card Number:
+                <mark><strong>
+                    <span th:if="${#fields.hasErrors('cardNumber')}"
+                                      th:errors="*{cardNumber}">Card Number error</span>
+                </strong></mark>
+                <input type="number" id="cardNumber" placeholder="cardNumber"
+                       th:field="*{cardNumber}"><br/>
+
+                Expiration Date:
+                <mark><strong>
+                    <span th:if="${#fields.hasErrors('expirationDate')}"
+                          th:errors="*{expirationDate}">Expiration Date error</span>
+                </strong></mark>
+                <input type="date" id="expirationDate" placeholder="mm/yyyy"
+                       th:field="*{expirationDate}"><br/>
+
+                User Name:
+                <mark><strong>
+                    <span th:if="${#fields.hasErrors('userName')}"
+                          th:errors="*{userName}">User Name error</span>
+                </strong></mark>
+                <input type="text" id="userName" placeholder="userName"
+                       th:field="*{userName}"><br/>
+
+                Password:
+                <mark><strong>
+                    <span th:if="${#fields.hasErrors('password')}"
+                          th:errors="*{password}">Password error</span>
+                </strong></mark>
+                <input type="text" id="password" placeholder="password"
+                       th:field="*{password}"><br/>
+
+
+                <input type="submit" value="Submit">
+
+            </form>
+        </div>
+    </div>
+</body>
+</html>

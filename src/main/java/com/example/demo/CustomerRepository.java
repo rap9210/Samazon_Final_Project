@@ -3,5 +3,7 @@ package com.example.demo;
 import org.springframework.data.repository.CrudRepository;
 
 public interface CustomerRepository extends CrudRepository<Customer, Long> {
-    Customer findByUser_name(String username);
+    Customer findByUserName(String username);
+    Customer findByEmail(String email);
+    Long countById(Long id);
 }

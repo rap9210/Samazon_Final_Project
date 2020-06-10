@@ -2,25 +2,25 @@ package com.example.demo;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import java.util.Set;
+import javax.validation.constraints.NotNull;
 
 @Entity
-//@Table(name = "product_DB")
+@Table(name = "product_db")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
     @NotEmpty
-    private String product_type;
+    private String productType;
 
     @NotEmpty
-    private String product_name;
+    private String productName;
 
-    @NotEmpty
+    @NotNull
     private double price;
 
-    @NotEmpty
+    @NotNull
     private boolean available;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -38,20 +38,20 @@ public class Product {
         this.id = id;
     }
 
-    public String getProduct_type() {
-        return product_type;
+    public String getProductType() {
+        return productType;
     }
 
-    public void setProduct_type(String product_type) {
-        this.product_type = product_type;
+    public void setProductType(String product_type) {
+        this.productType = product_type;
     }
 
-    public String getProduct_name() {
-        return product_name;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setProduct_name(String product_name) {
-        this.product_name = product_name;
+    public void setProductName(String product_name) {
+        this.productName = product_name;
     }
 
     public double getPrice() {

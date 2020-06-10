@@ -1,12 +1,15 @@
 package com.example.demo;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
-//@Table(name = "customer_db")
+@Table(name = "customer_db")
 public class Customer {
 
     @Id
@@ -25,27 +28,27 @@ public class Customer {
     @NotEmpty
     private String email;
 
-    @NotEmpty
+    @NotNull
     private long phone;
 
     @NotEmpty
-    private String name;
+    private String nameOnCard;
+
+    @NotNull
+    private long cardNumber;
 
     @NotEmpty
-    private long card_number;
+    private String expirationDate;
 
     @NotEmpty
-    private LocalDate expiration_date;
-
-    @NotEmpty
-    private String user_name;
+    private String userName;
 
     @NotEmpty
     private String password;
 
     private String roles = "User";
 
-    @OneToMany(mappedBy = "customer_id", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
     private Set<Order> orders;
 
     public Customer() {
@@ -67,14 +70,12 @@ public class Customer {
         this.orders = orders;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getUserName() {
+        return userName;
     }
 
-
-
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUserName(String user_name) {
+        this.userName = user_name;
     }
 
     public long getId() {
@@ -117,28 +118,28 @@ public class Customer {
         this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public String getNameOnCard() {
+        return nameOnCard;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameOnCard(String name) {
+        this.nameOnCard = name;
     }
 
-    public long getCard_number() {
-        return card_number;
+    public long getCardNumber() {
+        return cardNumber;
     }
 
-    public void setCard_number(long card_number) {
-        this.card_number = card_number;
+    public void setCardNumber(long card_number) {
+        this.cardNumber = card_number;
     }
 
-    public LocalDate getExpiration_date() {
-        return expiration_date;
+    public String getExpirationDate() {
+        return expirationDate;
     }
 
-    public void setExpiration_date(LocalDate expiration_date) {
-        this.expiration_date = expiration_date;
+    public void setExpirationDate(String expiration_date) {
+        this.expirationDate = expiration_date;
     }
 
     public long getPhone() {
@@ -154,7 +155,13 @@ public class Customer {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        this.password = passwordEncoder.encode(password);
+    }
+
+    public String clearPassword(){
+        this.password = "";
+        return password;
     }
 
 }

@@ -5,6 +5,11 @@
     <title>list Products</title>
 </head>
 <body>
+    <button><a href="/">Home</a></button>
+    <button><a href="/login">login</a></button>
+    <button><a href="/register">Creat Account</a></button>
+    <button><a href="/checkout">Check Out</a></button>
+    <h1>products</h1>
     <table class="table">
         <thead>
             <tr>
@@ -17,8 +22,8 @@
         </thead>
         <tbody>
             <tr th:each="product :${products}">
-                <td th:text="${product.product_type}"></td>
-                <td th:text="${product.product_name}"></td>
+                <td th:text="${product.productType}"></td>
+                <td th:text="${product.productName}"></td>
                 <td th:text="${product.price}"></td>
                 <td th:text="${product.available}"></td>
                 <td>
