@@ -29,7 +29,7 @@ public class Customer {
     private String email;
 
     @NotNull
-    private long phone;
+    private String phone;
 
     @NotEmpty
     private String nameOnCard;
@@ -48,7 +48,7 @@ public class Customer {
 
     private String roles = "User";
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Set<Order> orders;
 
     public Customer() {
@@ -66,8 +66,8 @@ public class Customer {
         return orders;
     }
 
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
+    public void setOrders(Order order) {
+        this.orders.add(order);
     }
 
     public String getUserName() {
@@ -142,11 +142,11 @@ public class Customer {
         this.expirationDate = expiration_date;
     }
 
-    public long getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(long phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

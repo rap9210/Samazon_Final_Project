@@ -6,17 +6,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/a3a8254123.js" crossorigin="anonymous"></script>
-
+    <link rel="stylesheet" th:href="@{/styles/stylesheet.css}" type="text/css">
 </head>
 <body>
 <div class="row">
     <div class="col">
         <nav class="navbar navbar-expand-lg navbar-light bg-dark">
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+<!--            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"-->
+<!--                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                <span class="navbar-toggler-icon"></span>-->
+<!--            </button>-->
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
@@ -24,17 +24,17 @@
                         <button class="btn btn-dark"><a href="/" style="color: whitesmoke">Home</a></button>
                     </li>
                     <li class="nav-item">
-                        <button class="btn btn-dark"><a href="/login">login</a></button>
+                        <button class="btn btn-dark"><a href="/login">Login</a></button>
                     </li>
                     <li class="nav-item">
                         <button class="btn btn-dark"><a href="/register">Create Account</a></button>
                     </li>
-                    <li class="nav-item">
-                        <button class="btn btn-dark"><a href="/checkout">Check Out</a></button>
+                    <li class="nav-item" >
+                        <button class="btn btn-dark" ><a href="/cart">Check Out</a></button>
                     </li>
                     <li>
                         <p>
-                            <button class="btn btn-dark"><a th:href="@{/details}"><p><strong>[[${user}]]</strong></p></a></button>
+                            <button class="btn btn-dark"><a th:href="@{/profile}"><strong>[[${user}]]</strong></a></button>
                         <button class="btn btn-dark"><a th:href="@{/cart}" style="color: yellow"><i class="fas fa-shopping-cart"></i><sup>[[${cart}]]</sup></a></button></p>
 
                     </li>
@@ -65,17 +65,23 @@
                 <tbody>
                 <div th:each="product :${products}">
                     <tr>
-                        <td th:text="${product.productType}"></td>
+
+
+                            <td><a th:href="@{/category/{type}(type = ${product.productType})}"> [[${product.productType}]]</a></td>
+
+
                         <td th:text="${product.productName}"></td>
                         <td th:text="${product.price}"></td>
                         <td th:if="${product.available}">in Stock</td>
                         <td th:unless="${product.available}">out of Stock</td>
-
-                        <td>
+                        <td th:if="${product.available}">
                             <button>
-                                <a th:href="@{/selectProduct/{id}(id = ${product.id})}">Add</a>
+                                <a th:href="@{/selectProduct/{id}(id = ${product.id})}">Add</a> |
+                                <a th:href="@{/details/{id}(id = ${product.id})}">Details</a>
                             </button>
                         </td>
+
+
                     </tr>
                 </div>
                 </tbody>
@@ -83,6 +89,7 @@
         </div>
         <div class="col-2" ></div>
     </div>
+
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
             integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

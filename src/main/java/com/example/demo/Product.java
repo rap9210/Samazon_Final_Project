@@ -15,19 +15,34 @@ public class Product {
     private String productType;
 
     @NotEmpty
+    @Column(name = "name")
     private String productName;
 
     @NotNull
+    @Column(name = "price")
     private double price;
 
     @NotNull
+    @Column(name = "in_Stock")
     private boolean available;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "order_id")
     private Order order;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "cart_id")
+    private Cart cart;
+
     public Product() {
+    }
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 
     public long getId() {

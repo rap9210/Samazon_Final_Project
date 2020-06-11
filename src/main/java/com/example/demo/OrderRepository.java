@@ -6,4 +6,6 @@ import java.util.Set;
 
 public interface OrderRepository extends CrudRepository<Order, Long> {
 
+    Order findByCustomer(Customer customer);
+
 }

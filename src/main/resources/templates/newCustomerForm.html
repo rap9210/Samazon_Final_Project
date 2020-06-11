@@ -3,11 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>new customer form</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/a3a8254123.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/styles/stylesheet.css}" type="text/css">
 </head>
 <body>
-    <h1> Add new message</h1>
-    <div class="card">
-        <div class="card-body">
+<div class="row">
+    <div class="col-4">
+        <h2 style="margin-top: 40%; margin-left: 20%">Create an Account</h2>
+    </div>
+    <div class="col-4">
+        <div class="container" id="register">
+
+            <h3>Contact Information</h3>
             <form autocomplete="off" th:action="@{/addCustomer}" th:object="${newCustomer}" method="post">
 
                 <input type="hidden" th:field="*{id}">
@@ -16,59 +25,61 @@
                 First Name:
                 <mark><strong>
                     <span th:if="${#fields.hasErrors('firstName')}"
-                                      th:errors="*{firstName}">First Name error</span>
+                          th:errors="*{firstName}">First Name error</span>
                 </strong></mark>
-                <input type="text" id="firstName" placeholder="firstName"
+                <input type="text" id="firstName" placeholder="first name"
                        th:field="*{firstName}"/><br/>
 
                 Last Name:
                 <mark><strong>
                     <span th:if="${#fields.hasErrors('lastName')}"
-                                      th:errors="*{lastName}">Last Name error</span>
+                          th:errors="*{lastName}">Last Name error</span>
                 </strong></mark>
-                <input type="text" id="lastName" placeholder="lastName"
-                          th:field="*{lastName}"><br/>
+                <input type="text" id="lastName" placeholder="last name"
+                       th:field="*{lastName}"><br/>
 
-                Address:
-                <mark><strong>
-                    <span th:if="${#fields.hasErrors('address')}"
-                                      th:errors="*{address}">Address error</span>
-                </strong></mark>
-                <input type="text" id="address" placeholder="address"
-                       th:field="*{address}"><br/>
 
                 Email:
                 <mark><strong>
                     <span th:if="${#fields.hasErrors('email')}"
-                                      th:errors="*{email}">Email error</span>
+                          th:errors="*{email}">Email error</span>
                 </strong></mark>
                 <input type="email" id="email" placeholder="email"
                        th:field="*{email}"><br/>
 
-
-                phone:
+                Phone:
                 <mark><strong>
                     <span th:if="${#fields.hasErrors('phone')}"
-                                      th:errors="*{phone}">phone error</span>
+                          th:errors="*{phone}">phone error</span>
                 </strong></mark>
                 <input type="number" id="phone" placeholder="phone"
                        th:field="*{phone}"><br/>
+                <hr/>
+                <h3>Delivery Address</h3>
+                Address:
+                <mark><strong>
+                    <span th:if="${#fields.hasErrors('address')}"
+                          th:errors="*{address}">Address error</span>
+                </strong></mark>
+                <input type="text" id="address" placeholder="address"
+                       th:field="*{address}"><br/>
 
-
+                <hr />
+                <h3>Payment Information</h3>
                 Name On Card:
                 <mark><strong>
                     <span th:if="${#fields.hasErrors('nameOnCard')}"
-                                      th:errors="*{nameOnCard}">Name On Card error</span>
+                          th:errors="*{nameOnCard}">Name On Card error</span>
                 </strong></mark>
-                <input type="text" id="nameOnCard" placeholder="nameOnCard"
+                <input type="text" id="nameOnCard" placeholder="cardholder"
                        th:field="*{nameOnCard}"><br/>
 
                 Card Number:
                 <mark><strong>
                     <span th:if="${#fields.hasErrors('cardNumber')}"
-                                      th:errors="*{cardNumber}">Card Number error</span>
+                          th:errors="*{cardNumber}">Card Number error</span>
                 </strong></mark>
-                <input type="number" id="cardNumber" placeholder="cardNumber"
+                <input type="text" id="cardNumber" placeholder="1111-2222-3333-4444"
                        th:field="*{cardNumber}"><br/>
 
                 Expiration Date:
@@ -76,15 +87,16 @@
                     <span th:if="${#fields.hasErrors('expirationDate')}"
                           th:errors="*{expirationDate}">Expiration Date error</span>
                 </strong></mark>
-                <input type="date" id="expirationDate" placeholder="mm/yyyy"
+                <input type="text" id="expirationDate" placeholder="mm/yyyy"
                        th:field="*{expirationDate}"><br/>
-
+                <hr/>
+                <h3>Login Information</h3>
                 User Name:
                 <mark><strong>
                     <span th:if="${#fields.hasErrors('userName')}"
                           th:errors="*{userName}">User Name error</span>
                 </strong></mark>
-                <input type="text" id="userName" placeholder="userName"
+                <input type="text" id="userName" placeholder="username"
                        th:field="*{userName}"><br/>
 
                 Password:
@@ -96,10 +108,22 @@
                        th:field="*{password}"><br/>
 
 
-                <input type="submit" value="Submit">
+                <input class="btn btn-outline-dark my-2 my-sm-0" type="submit" value="Submit">
 
             </form>
         </div>
     </div>
+    <div class="col-4"></div>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
 </body>
 </html>

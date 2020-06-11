@@ -2,6 +2,7 @@ package com.example.demo;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.HashSet;
 import java.util.Set;
 
 
@@ -13,13 +14,14 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @Column(name = "subtotal")
     private double subtotal;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
     private Set<Product> products;
 
     public Order() {
@@ -39,8 +41,8 @@ public class Order {
 
     public void setSubtotal(Set<Product> products) {
         double order_total = 0;
-        for(Product p : products){
-            order_total =+ p.getPrice();
+        for(Product product: products){
+            order_total += product.getPrice();
         }
         this.subtotal = order_total;
     }
