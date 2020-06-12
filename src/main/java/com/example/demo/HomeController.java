@@ -215,6 +215,11 @@ public class HomeController {
         return "prodDetails";
     }
 
+    @RequestMapping("/update/{id}")
+    public String productDetailsView(@PathVariable("id")long id, Model model){
+        model.addAttribute("product", productRepository.findById(id).get());
+        return "addProduct";
+    }
     @RequestMapping("/clearCart")
     public String clearCart(){
         cart.getProducts().clear();
