@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.security.Principal;
+import java.text.DecimalFormat;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -39,6 +40,7 @@ public class HomeController {
         if(principal != null) {
             String username = principal.getName();
             model.addAttribute("user", customerRepository.findByUserName(username).getUserName());
+            model.addAttribute("userRole", customerRepository.findByUserName(username).getRoles());
         }
         else{
             model.addAttribute("user", "Guest");
@@ -87,6 +89,25 @@ public class HomeController {
 
     }
 
+    @GetMapping("/addProduct")
+    public String addProductForm(Model model, Principal principal){
+        String username = principal.getName();
+        model.addAttribute("user", customerRepository.findByUserName(username));
+        model.addAttribute("product", new Product());
+        return "addProduct";
+    }
+
+    @PostMapping("/addProduct")
+    public String processNewProduct(@Valid @ModelAttribute("newProduct") Product product, BindingResult result){
+        if(result.hasErrors()){
+            return "addProduct";
+        }
+        else{
+            productRepository.save(product);
+            return "redirect:/";
+        }
+    }
+
     @RequestMapping("/register")
     public String newCustomerForm(Model model){
         model.addAttribute("newCustomer", new Customer());
@@ -109,13 +130,13 @@ public class HomeController {
         if(principal == null){
             return "redirect:/login";
         }
-        Product product = new Product();
-        product.setAvailable(productRepository.findById(id).get().isAvailable());
-        product.setProductName(productRepository.findById(id).get().getProductName());
-        product.setProductType(productRepository.findById(id).get().getProductType());
-        product.setPrice(productRepository.findById(id).get().getPrice());
-        product.setCart(cart);
-        cart.setProducts(product);
+//        Product product = new Product();
+//        product.setAvailable(productRepository.findById(id).get().isAvailable());
+//        product.setProductName(productRepository.findById(id).get().getProductName());
+//        product.setProductType(productRepository.findById(id).get().getProductType());
+//        product.setPrice(productRepository.findById(id).get().getPrice());
+//        product.setCart(cart);
+        cart.setProducts(productRepository.findById(id).get());
         cartRepository.save(cart);
         return "redirect:/";
     }
@@ -130,15 +151,22 @@ public class HomeController {
         model.addAttribute("cart", cart.getProducts());
         double cartTotal = 0;
         double tax = 0.07;
+        double shipping = 20;
         for(Product product: cart.getProducts()){
             cartTotal += product.getPrice();
         }
+        if(cartTotal > 50){
+            shipping = 0;
+        }
         model.addAttribute("totalBeforeTax", cartTotal);
         cartTotal = cartTotal*(1+tax);
-
+        model.addAttribute("shipping", shipping);
+        cartTotal += shipping;
         model.addAttribute("total", cartTotal);
         tax = cartTotal - cartTotal/(1+tax);
         model.addAttribute("tax", tax);
+        cart.setTotal(cartTotal);
+        cartRepository.save(cart);
         return "cart";
     }
 
@@ -151,9 +179,13 @@ public class HomeController {
 
         Order order = new Order();
 
+//        for(Product product: cart.getProducts()){
+//            order.setProducts(product);
+//            orderRepository.save(order);
+//        }
         order.setProducts(cart.getProducts());
         orderRepository.save(order);
-        order.setSubtotal(cart.getProducts());
+        order.setTotal(cart.getTotal());
         orderRepository.save(order);
         order.setCustomer(customerRepository.findByUserName(username));
         orderRepository.save(order);
@@ -162,7 +194,7 @@ public class HomeController {
 
         model.addAttribute("order", cart.getProducts());
         model.addAttribute("orderSize", order.getProducts().size());
-        model.addAttribute("orderPrice", order.getSubtotal());
+        model.addAttribute("orderPrice", order.getTotal());
 
         model.addAttribute("user", customerRepository.findByUserName(username));
 
@@ -186,6 +218,13 @@ public class HomeController {
         return "redirect:/";
     }
 
+    @RequestMapping("/delete/{id}")
+    public String delete(@PathVariable("id") long id){
+        if(productRepository.existsById(id)){
+            productRepository.deleteById(id);
+        }
+        return "redirect:/";
+    }
     @RequestMapping("/category/{type}")
     public String electronics(Principal principal, Model model, @PathVariable("type") String type){
         if(principal == null){
@@ -204,6 +243,11 @@ public class HomeController {
         return "category";
     }
 
+//    public static double roundAvoid(double value, int places){
+//        double scale = Math.pow(10, places);
+//
+//        return Math.round(value*scale) / scale;
+//    }
 
 
 }

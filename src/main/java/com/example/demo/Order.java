@@ -17,14 +17,26 @@ public class Order {
     @Column(name = "subtotal")
     private double subtotal;
 
+    private double total;
+
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "order", cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     private Set<Product> products;
 
     public Order() {
+    }
+
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
     }
 
     public Set<Product> getProducts() {
@@ -51,6 +63,9 @@ public class Order {
         this.id = id;
     }
 
+//    public void setProducts(Product product) {
+//        this.products.add(product);
+//    }
     public void setProducts(Set<Product> products) {
         this.products = products;
     }

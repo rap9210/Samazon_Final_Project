@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>list Products</title>
@@ -38,6 +38,12 @@
                         <button class="btn btn-dark"><a th:href="@{/cart}" style="color: yellow"><i class="fas fa-shopping-cart"></i><sup>[[${cart}]]</sup></a></button></p>
 
                     </li>
+                    <li>
+                        <div class="container" style="color: whitesmoke">
+                            <h3 class="display-4">Free Shipping!</h3>
+                            <p class="lead">on orders of 50$+</p>
+                        </div>
+                    </li>
                 </ul>
 <!--                <form th:action="@{/search}" th:object="${search}" method="post" class="form-inline my-2 my-lg-0">-->
 <!--                    <input th:field="*{search}" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">-->
@@ -54,8 +60,10 @@
     <div class="row" style="background-color: #f5f5f5">
 
         <div class="col-2" ></div>
-
         <div class="col-8" >
+            <div th:if="${userRole} == Admin">
+                <a th:href="@{/addProduct}">New Product</a>
+            </div>
             <table class="table">
                 <thead>
                 <tr>
@@ -65,14 +73,13 @@
                     <th>Price</th>
                     <th>In Stock</th>
                     <th>Action</th>
+                    <th th:if="${userRole} == Admin">Admin</th>
                 </tr>
                 </thead>
                 <tbody>
                 <div th:each="product :${products}">
                     <tr>
-
-
-                            <td><a th:href="@{/category/{type}(type = ${product.productType})}"> [[${product.productType}]]</a></td>
+                        <td><a th:href="@{/category/{type}(type = ${product.productType})}"> [[${product.productType}]]</a></td>
 
                         <td><img th:src="${product.imageUrl}" style="width: 40px; height: 40px"></td>
                         <td th:text="${product.productName}"></td>
@@ -85,8 +92,9 @@
                                 <a th:href="@{/details/{id}(id = ${product.id})}">Details</a>
                             </button>
                         </td>
-
-
+                        <td th:if="${userRole} == Admin">
+                            <a th:href="@{/delete/{id}(id = ${product.id})}">Delete</a>
+                        </td>
                     </tr>
                 </div>
                 </tbody>
