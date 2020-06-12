@@ -30,7 +30,7 @@
                         <button class="btn btn-dark"><a href="/register">Create Account</a></button>
                     </li>
                     <li class="nav-item" >
-                        <button class="btn btn-dark" ><a href="/cart">Check Out</a></button>
+                        <button class="btn btn-dark"><a th:href="@{/logout}">logout</a></button>
                     </li>
                     <li>
                         <p>
@@ -39,6 +39,10 @@
 
                     </li>
                 </ul>
+<!--                <form th:action="@{/search}" th:object="${search}" method="post" class="form-inline my-2 my-lg-0">-->
+<!--                    <input th:field="*{search}" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">-->
+<!--                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+<!--                </form>-->
                 <form class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -56,6 +60,7 @@
                 <thead>
                 <tr>
                     <th>Product Type</th>
+                    <th></th>
                     <th>Name</th>
                     <th>Price</th>
                     <th>In Stock</th>
@@ -69,7 +74,7 @@
 
                             <td><a th:href="@{/category/{type}(type = ${product.productType})}"> [[${product.productType}]]</a></td>
 
-
+                        <td><img th:src="${product.imageUrl}" style="width: 40px; height: 40px"></td>
                         <td th:text="${product.productName}"></td>
                         <td th:text="${product.price}"></td>
                         <td th:if="${product.available}">in Stock</td>

@@ -29,12 +29,13 @@ public class HomeController {
     CartRepository cartRepository;
 
     Cart cart = new Cart();
+    Search search = new Search();
 
     @RequestMapping("/")
     public String listProduct(Model model, Principal principal){
         model.addAttribute("products", productRepository.findAll());
         model.addAttribute("cart", cart.getProducts().size());
-
+//        model.addAttribute("search", new Search());
         if(principal != null) {
             String username = principal.getName();
             model.addAttribute("user", customerRepository.findByUserName(username).getUserName());
@@ -46,10 +47,27 @@ public class HomeController {
         return "home";
     }
 
+//    @PostMapping("/search")
+//    public String searchProductRepository(Model model, @ModelAttribute("newSearch")Search search){
+//        Set<Product> tempSet = new HashSet<>();
+//
+//        for(Product product: productRepository.findAll()){
+//            if(product.getProductName().contains(search.getSearch())){
+//                tempSet.add(product);
+//            }
+//        }
+//        model.addAttribute("products", tempSet);
+//        return "home";
+//
+//    }
+
     @RequestMapping("/login")
     public String login(){
         return "login";
     }
+
+    @PostMapping("/logout")
+    public String logout(){return "redirect:/login?logout=true";}
 
     @RequestMapping("/profile")
     public String viewUserProfile(Model model, Principal principal){
@@ -57,7 +75,8 @@ public class HomeController {
             String username = principal.getName();
             model.addAttribute("user", customerRepository.findByUserName(username));
             model.addAttribute("userOrders", customerRepository.findByUserName(username).getOrders());
-            model.addAttribute("products", orderRepository.findByCustomer(customerRepository.findByUserName(username)).getProducts());
+
+//            model.addAttribute("products", orderRepository.findAllByCustomer(customerRepository.findByUserName(username)));
             model.addAttribute("cart", cart.getProducts().size());
             model.addAttribute("orderRepository", orderRepository.findAll());
             return "userProfile";
@@ -133,7 +152,9 @@ public class HomeController {
         Order order = new Order();
 
         order.setProducts(cart.getProducts());
+        orderRepository.save(order);
         order.setSubtotal(cart.getProducts());
+        orderRepository.save(order);
         order.setCustomer(customerRepository.findByUserName(username));
         orderRepository.save(order);
         customerRepository.findByUserName(username).setOrders(order);
@@ -155,6 +176,7 @@ public class HomeController {
         String username = principal.getName();
         model.addAttribute("product", productRepository.findById(id).get());
         model.addAttribute("user", customerRepository.findByUserName(username));
+        model.addAttribute("cart", cart.getProducts().size());
         return "prodDetails";
     }
 

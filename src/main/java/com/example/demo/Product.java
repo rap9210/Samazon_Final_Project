@@ -1,8 +1,11 @@
 package com.example.demo;
 
 import javax.persistence.*;
+import javax.swing.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.awt.*;
+import java.net.URL;
 
 @Entity
 @Table(name = "product_db")
@@ -10,6 +13,9 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+
+    @Column(name = "imageUrl")
+    private String imageUrl;
 
     @NotEmpty
     private String productType;
@@ -30,7 +36,7 @@ public class Product {
     @JoinColumn(name = "order_id")
     private Order order;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cart_id")
     private Cart cart;
 
@@ -43,6 +49,14 @@ public class Product {
 
     public void setCart(Cart cart) {
         this.cart = cart;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     public long getId() {

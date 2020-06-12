@@ -15,7 +15,7 @@ public class Cart {
 
     private double subtotal;
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.DETACH, fetch = FetchType.EAGER)
     private Set<Product> productSet = new HashSet<>();
 
 

@@ -31,7 +31,7 @@
                         <button class="btn btn-dark"><a href="/register">Create Account</a></button>
                     </li>
                     <li class="nav-item">
-                        <button class="btn btn-dark"><a href="/cart">Check Out</a></button>
+                        <button class="btn btn-dark"><a th:href="@{/logout}">logout</a></button>
                     </li>
                     <li>
                         <p>
@@ -51,9 +51,13 @@
 <div class="row">
     <div class="col-4"></div>
     <div class="col-4">
+        <img th:src="${product.imageUrl}" style="width: 75px; height: 75px">
         Title: [[${product.productName}]] <br/>
         Category: [[${product.productType}]] <br/>
         Price: [[${product.price}]] <br/>
+        <button>
+            <a th:href="@{/selectProduct/{id}(id = ${product.id})}">Add</a>
+        </button>
     </div>
     <div class="col-4"></div>
 </div>

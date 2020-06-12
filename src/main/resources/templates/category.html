@@ -27,7 +27,7 @@
                         <button class="btn btn-dark"><a href="/register">Create Account</a></button>
                     </li>
                     <li class="nav-item" >
-                        <button class="btn btn-dark" ><a href="/cart">Check Out</a></button>
+                        <button class="btn btn-dark"><a th:href="@{/logout}">logout</a></button>
                     </li>
                     <li>
                         <p>
@@ -53,6 +53,7 @@
             <thead>
             <tr>
                 <th>Product Type</th>
+                <th></th>
                 <th>Name</th>
                 <th>Price</th>
                 <th>In Stock</th>
@@ -63,6 +64,7 @@
             <div th:each="product :${products}">
                 <tr>
                     <td th:text="${product.productType}"></td>
+                    <td><img th:src="${product.imageUrl}" style="width: 40px; height: 40px"></td>
                     <td th:text="${product.productName}"></td>
                     <td th:text="${product.price}"></td>
                     <td th:if="${product.available}">in Stock</td>

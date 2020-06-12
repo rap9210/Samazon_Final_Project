@@ -31,7 +31,7 @@
                         <button class="btn btn-dark"><a href="/register">Create Account</a></button>
                     </li>
                     <li class="nav-item">
-                        <button class="btn btn-dark"><a href="/cart">Check Out</a></button>
+                        <button class="btn btn-dark"><a th:href="@{/logout}">logout</a></button>
                     </li>
                     <li>
                         <p>
@@ -68,13 +68,13 @@
                 <h3>Order History</h3>
                 Orders: [[${user.orders.size()}]]
                 <div th:each="order: ${userOrders}">
-                    Items: [[${order.products.size()}]] <br/>
+<!--                    <div th:each="product: ${order.products}">-->
+
+<!--                    </div>-->
+                    Items: [[${order.products.size()}]]<br/>
                     Subtotal: [[${order.subtotal}]]
                 </div>
-                <div th:each="product: ${products}">
-                    [[${product.productName}]]
-                    [[${product.price}]]
-                </div>
+
 
             </div>
         </div>

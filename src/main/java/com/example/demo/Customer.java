@@ -48,7 +48,7 @@ public class Customer {
 
     private String roles = "User";
 
-    @OneToMany(mappedBy = "customer", cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Order> orders;
 
     public Customer() {
