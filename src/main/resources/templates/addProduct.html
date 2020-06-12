@@ -25,6 +25,8 @@
     <input type="text" th:field="*{productName}"><br>
     Enter Price:
     <input type="number" step="0.01" min="0" th:field="*{price}"><br>
+    Product Description:
+    <textarea th:field="*{description}" rows="3"></textarea><br>
     Select Availability:
     <input type="radio" th:field="*{available}" value="true">in stock
     <input type="radio" th:field="*{available}" value="false">out of stock

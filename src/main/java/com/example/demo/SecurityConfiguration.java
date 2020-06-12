@@ -22,7 +22,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/").permitAll().permitAll();
+                .logoutSuccessUrl("/login?logout=true").permitAll().permitAll();
 
         httpSecurity.csrf()
                 .ignoringAntMatchers("/h2-console/**");

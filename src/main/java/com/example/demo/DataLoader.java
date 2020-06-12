@@ -55,6 +55,8 @@ public class DataLoader implements CommandLineRunner {
         product1.setPrice(399.99);
         product1.setAvailable(true);
         product1.setImageUrl("https://i.pcmag.com/imagery/reviews/05zKVE4qnORysT6djhLeZZd-41..v_1578361275.jpg");
+        product1.setDescription(
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
         productRepository.save(product1);
 
         Product product2 = new Product();
@@ -63,7 +65,8 @@ public class DataLoader implements CommandLineRunner {
         product2.setPrice(1399.99);
         product2.setAvailable(true);
         product2.setImageUrl("https://images-na.ssl-images-amazon.com/images/I/91aVTs5XjiL._AC_UY500_.jpg");
-
+        product2.setDescription(
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
         productRepository.save(product2);
 
         Product product3 = new Product();
@@ -72,6 +75,9 @@ public class DataLoader implements CommandLineRunner {
         product3.setPrice(1255.99);
         product3.setAvailable(true);
         product3.setImageUrl("https://www.nixon.com/on/demandware.static/-/Sites-masterCatalog_Nixon/default/dwd0bb7832/products/A045-1920-view1.png");
+        product3.setDescription(
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+
         productRepository.save(product3);
 
         Product product4 = new Product();
@@ -79,6 +85,9 @@ public class DataLoader implements CommandLineRunner {
         product4.setProductName("Bronze Watch");
         product4.setPrice(1125.99);
         product4.setAvailable(true);
+        product4.setDescription(
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+
         product4.setImageUrl("https://secure-journal.hautehorlogerie.org/wp-content/uploads/2019/06/Panerai-Submersible-Bronzo.jpg");
         productRepository.save(product4);
 
@@ -88,6 +97,8 @@ public class DataLoader implements CommandLineRunner {
         product5.setPrice(499.99);
         product5.setAvailable(true);
         product5.setImageUrl("https://www.ripcurl.com/media/catalog/product/a/3/a3199_cob-1.jpg");
+        product5.setDescription(
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
 
         productRepository.save(product5);
 
@@ -97,6 +108,8 @@ public class DataLoader implements CommandLineRunner {
         product6.setPrice(1749.99);
         product6.setAvailable(true);
         product6.setImageUrl("https://d1251d0o0760fi.cloudfront.net/catalog/product/i/c/iced-out-diamond-rolex-watch-for-men-datejust-with-diamond-bezel-face-20c_main.jpg");
+        product6.setDescription(
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
 
         productRepository.save(product6);
 
@@ -106,6 +119,8 @@ public class DataLoader implements CommandLineRunner {
         product7.setPrice(199.99);
         product7.setAvailable(true);
         product7.setImageUrl("https://images-na.ssl-images-amazon.com/images/I/61%2BD1lyvOPL.__AC_SY300_QL70_ML2_.jpg");
+        product7.setDescription(
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
 
         productRepository.save(product7);
 
@@ -115,6 +130,8 @@ public class DataLoader implements CommandLineRunner {
         product8.setPrice(399.99);
         product8.setAvailable(true);
         product8.setImageUrl("https://www.bhphotovideo.com/images/images2500x2500/samsung_mz_76q1t0b_am_1tb_860_qvo_sata_1448944.jpg");
+        product8.setDescription(
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
 
         productRepository.save(product8);
 
@@ -124,6 +141,8 @@ public class DataLoader implements CommandLineRunner {
         product9.setPrice(799.99);
         product9.setAvailable(true);
         product9.setImageUrl("https://www.bhphotovideo.com/images/images2500x2500/samsung_mz_76q1t0b_am_1tb_860_qvo_sata_1448944.jpg");
+        product9.setDescription(
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
 
         productRepository.save(product9);
 
@@ -133,6 +152,8 @@ public class DataLoader implements CommandLineRunner {
         product10.setPrice(250.99);
         product10.setAvailable(true);
         product10.setImageUrl("https://m.media-amazon.com/images/I/41i+sZeH71L._AC_SS350_.jpg");
+        product10.setDescription(
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
 
         productRepository.save(product10);
 
@@ -142,6 +163,8 @@ public class DataLoader implements CommandLineRunner {
         product11.setPrice(399.99);
         product11.setAvailable(true);
         product11.setImageUrl("https://i.ebayimg.com/images/g/IXMAAOSwG-1WuxkS/s-l300.jpg");
+        product11.setDescription(
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
 
         productRepository.save(product11);
 
@@ -150,6 +173,8 @@ public class DataLoader implements CommandLineRunner {
         product12.setProductName("I3 Processor");
         product12.setPrice(174.99);
         product12.setAvailable(true);
+        product12.setDescription(
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
         product12.setImageUrl("https://images-na.ssl-images-amazon.com/images/I/41wHOMADfbL._SR600%2C315_PIWhiteStrip%2CBottomLeft%2C0%2C35_SCLZZZZZZZ_.jpg");
 
         productRepository.save(product12);
@@ -160,6 +185,8 @@ public class DataLoader implements CommandLineRunner {
         product13.setPrice(49.99);
         product13.setAvailable(true);
         product13.setImageUrl("https://images-na.ssl-images-amazon.com/images/I/81PLqxtrJ3L._AC_SX425_.jpg");
+        product13.setDescription(
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
 
         productRepository.save(product13);
 
@@ -169,6 +196,8 @@ public class DataLoader implements CommandLineRunner {
         product14.setPrice(25.99);
         product14.setAvailable(true);
         product14.setImageUrl("https://snpi.dell.com/snp/images/products/large/en-us~570-ABGP/570-ABGP.jpg");
+        product14.setDescription(
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
 
         productRepository.save(product14);
 
@@ -178,6 +207,8 @@ public class DataLoader implements CommandLineRunner {
         product15.setPrice(7.99);
         product15.setAvailable(true);
         product15.setImageUrl("https://www.dollargeneral.com/media/catalog/product/cache/0729a8e318a86bbdd225c6c8aa5967a3/0/4/046500008184_306003_1066810_v2-fw.jpg");
+        product15.setDescription(
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
         productRepository.save(product15);
 
         Product product16 = new Product();
@@ -186,6 +217,8 @@ public class DataLoader implements CommandLineRunner {
         product16.setPrice(49.99);
         product16.setAvailable(true);
         product16.setImageUrl("https://www.lloydmatsstore.com/pub/media/catalog/product/cache/66f87910f1ac367f2ef50980b009b1bc/b/e/berber2-1-hero.jpg");
+        product16.setDescription(
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
 
         productRepository.save(product16);
 
@@ -195,6 +228,8 @@ public class DataLoader implements CommandLineRunner {
         product17.setPrice(149.99);
         product17.setAvailable(true);
         product17.setImageUrl("https://www.classentials.com/wp-content/uploads/2019/11/02-Grundig-WK-300-Weltklang-1-DIN-1975-BMW-Peugeot-Alfa-Romeo-classic-car-auto-radio-autoradio-classentials-01.jpg");
+        product17.setDescription(
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
 
         productRepository.save(product17);
 
@@ -204,6 +239,8 @@ public class DataLoader implements CommandLineRunner {
         product18.setPrice(39.99);
         product18.setAvailable(true);
         product18.setImageUrl("https://cdn.shopify.com/s/files/1/2652/6224/products/mm-car-seat-covers-99shirt_331_800x.jpg?v=1532756001");
+        product18.setDescription(
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
 
         productRepository.save(product18);
 
@@ -213,6 +250,8 @@ public class DataLoader implements CommandLineRunner {
         product19.setPrice(43.99);
         product19.setAvailable(true);
         product19.setImageUrl("https://dejpknyizje2n.cloudfront.net/svgcustom/backgrounds/preview/navy-anchor-sticker-5492-81889-1572300748.6372564.jpg");
+        product19.setDescription(
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
 
         productRepository.save(product19);
 
@@ -222,6 +261,8 @@ public class DataLoader implements CommandLineRunner {
         product20.setPrice(70.99);
         product20.setAvailable(false);
         product20.setImageUrl("https://i5.walmartimages.com/asr/5eb60f61-4034-4d2f-b637-befb4a88d13a_2.2aa9bc9d73aea118831a39d690a102ed.jpeg");
+        product20.setDescription(
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
 
         productRepository.save(product20);
 

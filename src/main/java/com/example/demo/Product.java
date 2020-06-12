@@ -21,6 +21,10 @@ public class Product {
     private String productType;
 
     @NotEmpty
+    @Column(name = "description")
+    private String description;
+
+    @NotEmpty
     @Column(name = "name")
     private String productName;
 
@@ -53,6 +57,14 @@ public class Product {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setImageUrl(String imageUrl) {

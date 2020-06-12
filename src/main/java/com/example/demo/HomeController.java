@@ -205,6 +205,9 @@ public class HomeController {
 
     @RequestMapping("/details/{id}")
     public String productDetailsView(@PathVariable("id")long id, Model model, Principal principal){
+        if(principal == null){
+            return "redirect:/login";
+        }
         String username = principal.getName();
         model.addAttribute("product", productRepository.findById(id).get());
         model.addAttribute("user", customerRepository.findByUserName(username));
